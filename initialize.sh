@@ -2,6 +2,7 @@
 
 export LC_ALL="en_US.UTF-8"
 export NCURSES_NO_UTF8_ACS=1
+export TERM=xterm
 
 rm -f /etc/apache2/sites-available/000-default.conf
 rm -f /etc/apache2/sites-available/default-ssl.conf
