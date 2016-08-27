@@ -4,7 +4,7 @@ use Carp;
 use warnings;
 use CGI qw/:standard/;
 use JSON;
-my $basepath = '/bin:/usr/bin:/usr/local/bin';
+my $basepath = '/usr/local/bin:/bin:/usr/bin';
 $ENV{'PATH'} = $basepath;
 chdir('/tmp');
 
