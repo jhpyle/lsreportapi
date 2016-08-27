@@ -1,7 +1,7 @@
 FROM debian:sid
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get clean && apt-get update
-RUN until apt-get -q -y install python git apache2 supervisor perl libcgi-pm-perl libjson-perl fontconfig libfontconfig1 phantomjs; do sleep 1; done
+RUN until apt-get -q -y install locales python git apache2 supervisor perl libcgi-pm-perl libjson-perl fontconfig libfontconfig1 phantomjs; do sleep 1; done
 RUN mkdir -p /opt/lsreportapi && cd /opt && git clone git://github.com/casperjs/casperjs.git && ln -s /opt/casperjs/bin/casperjs /usr/local/bin/casperjs
 RUN chown -R www-data.www-data /var/www && chsh -s /bin/bash www-data
 RUN cd /opt && git clone https://github.com/letsencrypt/letsencrypt && cd letsencrypt && ./letsencrypt-auto --help
@@ -15,6 +15,8 @@ COPY supervisor.conf /etc/supervisor/conf.d/lsreportapi.conf
 USER root
 RUN a2enmod ssl
 RUN a2enmod rewrite
+RUN locale-gen "en_US.UTF-8"
+RUN localedef -v -c -i en_US -f UTF-8 en_US.UTF-8
 ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data
 ENV APACHE_LOG_DIR /var/log/apache2

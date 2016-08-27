@@ -1,5 +1,8 @@
 #! /bin/bash
 
+export LC_ALL="en_US.UTF-8"
+export NCURSES_NO_UTF8_ACS=1
+
 rm -f /etc/apache2/sites-available/000-default.conf
 rm -f /etc/apache2/sites-available/default-ssl.conf
 a2dissite 000-default
@@ -21,7 +24,7 @@ if [ "${HOSTNAME-none}" != "none" ]; then
 fi
 a2ensite lsreportapi-http
 a2ensite lsreportapi-ssl
-cd /opt/letsencrypt 
+cd /opt/letsencrypt
 if [ -f /etc/letsencrypt/lra_using_lets_encrypt ]; then
     ./letsencrypt-auto renew
 else
