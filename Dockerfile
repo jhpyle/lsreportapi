@@ -6,6 +6,8 @@ RUN mkdir -p /opt/lsreportapi && cd /opt && git clone git://github.com/casperjs/
 RUN chown -R www-data.www-data /var/www && chsh -s /bin/bash www-data
 RUN cd /opt && git clone https://github.com/letsencrypt/letsencrypt && cd letsencrypt && ./letsencrypt-auto --help
 COPY initialize.sh /opt/lsreportapi/
+COPY apache.key /etc/ssl/apache.key
+COPY apache.crt /etc/ssl/apache.crt
 COPY ls-report-api.js /opt/lsreportapi/
 COPY index.pl /var/www/
 COPY default-ssl.conf /opt/lsreportapi/
