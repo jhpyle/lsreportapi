@@ -17,6 +17,7 @@ COPY supervisor.conf /etc/supervisor/conf.d/lsreportapi.conf
 USER root
 RUN a2enmod ssl
 RUN a2enmod rewrite
+RUN a2enmod cgid
 RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 RUN locale-gen
 RUN update-locale LANG=en_US.UTF-8
