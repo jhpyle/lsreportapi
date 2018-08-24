@@ -33,7 +33,7 @@ casper.then(function(){
 });
 
 casper.then(function(){
-  this.open(inputs[0] + '/modules/report/ajax.php', {
+  this.open(inputs[0] + '/report/api/legacy', {
     method: 'POST',
     data: {
       'rpc': "1",
@@ -48,7 +48,7 @@ casper.then(function(){
 });
 
 casper.then(function(){
-  this.open(inputs[0] + '/modules/report/ajax.php', {
+  this.open(inputs[0] + '/report/api/legacy', {
     method: 'POST',
     data: {
       'rpc': "1",
