@@ -64,11 +64,10 @@ casper.then(function(){
 
 casper.then(function(){
   var resp = JSON.parse(this.getPageContent());
-  var theHtml = resp["listHtml"];
+  var theHtml = resp["results"]["listHtml"];
   var theHeaders = Array();
   var theResult = this.evaluate(function(html, headers){
     var result = Object();
-    var headers = Array();
     result["rows"] = Array();
     var theDiv = document.createElement("div");
     theDiv.innerHTML = html;
