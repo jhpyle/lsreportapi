@@ -1,8 +1,7 @@
-FROM debian:sid
+FROM debian:jessie
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get clean && apt-get update
-RUN until apt-get -q -y install locales python git apache2 supervisor perl libcgi-pm-perl libjson-perl fontconfig libfontconfig1 phantomjs cron; do sleep 1; done
-RUN apt-get -q -y remove phantomjs
+RUN apt-get -y update
+RUN until apt-get -q -y install locales python git apache2 supervisor perl libcgi-pm-perl libjson-perl fontconfig libfontconfig1 cron bzip2; do sleep 1; done
 COPY phantomjs-2.1.1-linux-x86_64.tar.bz2 /tmp/
 RUN mkdir -p /opt/lsreportapi && cd /opt && tar -xf /tmp/phantomjs-2.1.1-linux-x86_64.tar.bz2 && ln -s /opt/phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/local/bin/phantomjs && git clone git://github.com/casperjs/casperjs.git && ln -s /opt/casperjs/bin/casperjs /usr/local/bin/casperjs
 RUN chown -R www-data.www-data /var/www && chsh -s /bin/bash www-data
